@@ -43,3 +43,52 @@
         </table>
     </div>
 </template>
+
+<script>
+import axios from "axios";
+import Swal from 'sweetalert2';
+export default {
+    name: 'Paciente',
+    data() {
+        return {
+            pacientes: []
+        }
+    },
+    methods: {
+        deletePaciente(id) {
+            Swal.fire({
+                title: `¿Quieres eliminar al paciente con ID ${id}?`,
+                showCancelButton: true,
+                confirmButtonText: 'Eliminar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete(`http://127.0.0.1:8000/api/pacientes/${id}`)
+                        .then(response => {
+                            if (response.data.success) {
+                                Swal.fire('¡Eliminado!', '', 'success')
+                                this.loadPacientes()
+                            }
+                        })
+                        .catch(error => {
+                            Swal.fire('¡Error!', error.message, 'error')
+                        })
+                }
+            })
+        },
+        editPaciente(id) {
+            this.$router.push({ name: 'EditarPaciente', params: { id } })
+        },
+        newPaciente() {
+            this.$router.push({ name: 'NuevoPaciente' })
+        },
+        loadPacientes() {
+            axios
+                .get('http://127.0.0.1:8000/api/pacientes')
+                .then(response => (this.pacientes = response.data.pacientes))
+        }
+    },
+    mounted() {
+        this.loadPacientes()
+    },
+}
+</script>

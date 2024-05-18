@@ -81,3 +81,52 @@
         </div>
     </div>
 </template>
+
+<script>
+import axios from 'axios'
+import Swal from 'sweetalert2'
+
+export default {
+    name: 'NuevoPaciente',
+    data() {
+        return {
+            paciente: {
+                id: 0,
+                nombre: '',
+                apellido: '',
+                fecha_nacimiento: '',
+                sexo: '',
+                telefono: '',
+                direccion: '',
+                email: ''
+            },
+        }
+    },
+    methods: {
+        cancel() {
+            this.$router.push({ name: 'Pacientes' }) // Usa 'Pacientes' con P mayúscula
+        },
+
+        async savePaciente() {
+            try {
+                const res = await axios.post('http://127.0.0.1:8000/api/pacientes', this.paciente)
+                if (res.status >= 200 && res.status < 300) {
+                    this.$router.push({ name: 'Pacientes' })
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'El paciente ha sido guardado',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                } else {
+                    Swal.fire('Error!', 'Hubo un problema al guardar el paciente', 'error')
+                }
+            } catch (error) {
+                console.error('Error al guardar paciente:', error.response || error.message)
+                Swal.fire('Error!', error.response?.data?.message || error.message || 'Hubo un problema al guardar el paciente', 'error')
+            }
+        }
+    },
+}
+</script>
