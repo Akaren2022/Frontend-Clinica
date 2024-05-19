@@ -2,7 +2,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBank, faBuilding, faPencil, faPhone, faPlus, faTag, faTrash, faUser, faCalendar, faHome, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faBank, faBuilding, faPencil, faPhone, faPlus, faTag, faTrash, faUser, faCalendar, faHome, faEnvelope, faInfo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { createApp } from 'vue'
 
@@ -20,6 +20,7 @@ library.add(faUser);
 library.add(faCalendar);
 library.add(faHome);
 library.add(faEnvelope);
+library.add(faInfo)
 
 createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)
