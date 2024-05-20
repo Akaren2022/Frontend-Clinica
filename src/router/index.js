@@ -17,6 +17,10 @@ import Tratamientos from '../views/Tratamientos.vue'
 import NuevoTratamiento from '../components/tratamientos/NuevoTratamiento.vue'
 import EditarTratamiento from '../components/tratamientos/EditarTramiento.vue'
 
+import Facturas from '../views/Facturas.vue'
+import NuevaFactura from '../components/facturas/NuevaFactura.vue'
+import EditarFactura from '../components/facturas/EditarFactura.vue'
+
 const routes = [
   {
     path: '/',
@@ -82,6 +86,21 @@ const routes = [
     path: '/tratamientos/editar/:id',
     name: 'EditarTratamiento',
     component: EditarTratamiento
+  },
+  {
+    path: '/facturas',
+    name: 'Facturas',
+    component: Facturas
+  },
+  {
+    path: '/facturas/nuevo',
+    name: 'NuevaFactura',
+    component: NuevaFactura
+  },
+  {
+    path: '/facturas/editar/:id',
+    name: 'EditarFactura',
+    component: EditarFactura
   },
   {
     path: '/about',
