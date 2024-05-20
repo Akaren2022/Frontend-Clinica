@@ -86,18 +86,41 @@ export default {
     },
     methods: {
         cancel() {
-            //
+            this.$router.push({ name: 'Citas' });
         },
         async loadPacientes() {
-            //
+            try {
+                const res = await axios.get('http://127.0.0.1:8000/api/pacientes');
+                if (res.status === 200) {
+                    this.pacientes = res.data.pacientes;
+                }
+            } catch (error) {
+                Swal.fire('Error!', error.message, 'error');
+            }
         },
         async saveAppointment() {
-            //
+            try {
+                const res = await axios.post('http://127.0.0.1:8000/api/appointments', this.appointment);
+                if (res.status >= 200 && res.status < 300) {
+                    this.$router.push({ name: 'Citas' });
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'La cita médica ha sido guardada',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                } else {
+                    Swal.fire('Error!', 'Hubo un problema al guardar la cita médica', 'error');
+                }
+            } catch (error) {
+                console.error('Error al guardar cita médica:', error.response || error.message);
+                Swal.fire('Error!', error.response?.data?.message || error.message || 'Hubo un problema al guardar la cita médica', 'error');
+            }
         }
     },
     mounted() {
-        //
+        this.loadPacientes();
     }
 }
 </script>
-
