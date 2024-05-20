@@ -1,5 +1,5 @@
 <template>
-    <div class="container text-start">
+    <div class="container text-start" v-if="tratamiento">
         <h1 class="text-primary fw-bold">Editar Tratamiento</h1>
         <div class="card">
             <div class="card-header fw-bold">
@@ -10,7 +10,7 @@
                     <div class="row mb-3">
                         <label for="historial_id" class="form-label">Historial Médico:</label>
                         <div class="input-group">
-                            <div class="input-group-text"> 
+                            <div class="input-group-text">
                                 <font-awesome-icon icon="tag" />
                             </div>
                             <select class="form-control" id="historial_id" v-model='tratamiento.historial_id'>
@@ -24,17 +24,17 @@
                     <div class="row mb-3">
                         <label for="descripcion" class="form-label">Descripción: </label>
                         <div class="input-group">
-                            <div class="input-group-text"> 
+                            <div class="input-group-text">
                                 <font-awesome-icon icon="info" />
                             </div>
-                            <input type="text" class="form-control" id="descripcion" placeholder="Descripción del tratamiento"
-                                v-model='tratamiento.descripcion'>
+                            <input type="text" class="form-control" id="descripcion"
+                                placeholder="Descripción del tratamiento" v-model='tratamiento.descripcion'>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="costo" class="form-label">Costo: </label>
                         <div class="input-group">
-                            <div class="input-group-text"> 
+                            <div class="input-group-text">
                                 <font-awesome-icon icon="building" />
                             </div>
                             <input type="number" class="form-control" id="costo" placeholder="Costo del tratamiento"
@@ -83,7 +83,7 @@ export default {
             try {
                 const res = await axios.get(`http://127.0.0.1:8000/api/treatments/${this.$route.params.id}`);
                 if (res.status === 200) {
-                    this.tratamiento = res.data.treatment;
+                    this.tratamiento = res.data.treatment; // Asegúrate de que el nombre del campo es correcto
                 }
             } catch (error) {
                 Swal.fire('Error!', error.message, 'error');
@@ -91,7 +91,9 @@ export default {
         },
         async updateTratamiento() {
             try {
-                const res = await axios.put(`http://127.0.0.1:8000/api/treatments/${this.$route.params.id}`, this.tratamiento);
+                const { id, ...updatedTratamiento } = this.tratamiento;
+
+                const res = await axios.put(`http://127.0.0.1:8000/api/treatments/${this.$route.params.id}`, updatedTratamiento);
                 if (res.status >= 200 && res.status < 300) {
                     this.$router.push({ name: 'Tratamientos' });
                     Swal.fire({
