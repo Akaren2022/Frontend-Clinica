@@ -1,14 +1,21 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+
 import Paciente from '../views/Pacientes.vue'
 import NuevoPaciente from '../components/pacientes/NuevoPaciente.vue'
 import EditarPaciente from '../components/pacientes/EditarPaciente.vue'
+
 import Citas from '../views/CitasMedicas.vue'
 import NuevaCita from '../components/citas/NuevaCita.vue'
 import EditarCita from '../components/citas/EditarCita.vue'
+
 import Historiales from '../views/HistorialesMedicos.vue'
 import NuevoHistorial from '../components/historiales/NuevoHistorial.vue'
 import EditarHistorial from '../components/historiales/EditarHistorial.vue'
+
+import Tratamientos from '../views/Tratamientos.vue'
+import NuevoTratamiento from '../components/tratamientos/NuevoTratamiento.vue'
+import EditarTratamiento from '../components/tratamientos/EditarTramiento.vue'
 
 const routes = [
   {
@@ -60,6 +67,21 @@ const routes = [
     path: '/historiales/editar/:id',
     name: 'EditarHistorial',
     component: EditarHistorial
+  },
+  {
+    path: '/tratamientos',
+    name: 'Tratamientos',
+    component: Tratamientos
+  },
+  {
+    path: '/tratamiento/nuevo',
+    name: 'NuevoTratamiento',
+    component: NuevoTratamiento
+  },
+  {
+    path: '/tratamientos/editar/:id',
+    name: 'EditarTratamiento',
+    component: EditarTratamiento
   },
   {
     path: '/about',
