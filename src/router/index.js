@@ -6,6 +6,9 @@ import EditarPaciente from '../components/pacientes/EditarPaciente.vue'
 import Citas from '../views/CitasMedicas.vue'
 import NuevaCita from '../components/citas/NuevaCita.vue'
 import EditarCita from '../components/citas/EditarCita.vue'
+import Historiales from '../views/HistorialesMedicos.vue'
+import NuevoHistorial from '../components/historiales/NuevoHistorial.vue'
+import EditarHistorial from '../components/historiales/EditarHistorial.vue'
 
 const routes = [
   {
@@ -42,6 +45,21 @@ const routes = [
     path: '/citas/editar/:id',
     name: 'EditaaCita',
     component: EditarCita
+  },
+  {
+    path: '/historiales',
+    name: 'Historiales',
+    component: Historiales
+  },
+  {
+    path: '/historiales/nuevo',
+    name: 'NuevoHistorial',
+    component: NuevoHistorial
+  },
+  {
+    path: '/historiales/editar/:id',
+    name: 'EditarHistorial',
+    component: EditarHistorial
   },
   {
     path: '/about',

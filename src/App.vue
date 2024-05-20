@@ -3,6 +3,7 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/pacientes">Pacientes</router-link> |
     <router-link to="/citas">Citas</router-link> |
+    <router-link to="/historiales">Historiales</router-link> |
     <router-link to="/about">About</router-link> |
   </nav>
   <router-view />
