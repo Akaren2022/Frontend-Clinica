@@ -71,18 +71,19 @@
         })
       },
       editCita(id) {
-        //
+        this.$router.push({ name: 'EditaaCita', params: { id } })
       },
       newCita() {
-        //
+        this.$router.push({ name: 'NuevaCita' })
       },
       loadCitas() {
-        //
+        axios
+          .get('http://127.0.0.1:8000/api/appointments')
+          .then(response => (this.citas = response.data.appointments))
       }
     },
     mounted() {
-      //
+      this.loadCitas()
     }
   }
   </script>
-  
