@@ -5,6 +5,7 @@
     <router-link to="/citas">Citas</router-link> |
     <router-link to="/historiales">Historiales</router-link> |
     <router-link to="/tratamientos">Tratamientos</router-link> |
+    <router-link to="/facturas">Facturas</router-link> |
     <router-link to="/about">About</router-link> |
   </nav>
   <router-view />
